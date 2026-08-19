@@ -1,6 +1,6 @@
 # Enterprise RAG Platform
 
-A production-shaped Retrieval-Augmented Generation platform for chatting with company documents — PDF, DOCX, TXT, Markdown, and images (via AI captioning). Ships with **both** a Streamlit chat UI and a **FastAPI REST API** behind API-key auth, a Dockerized deployment, and a CI pipeline that runs the test suite on every push.
+A production-shaped Retrieval-Augmented Generation platform for chatting with company documents - PDF, DOCX, TXT, Markdown, and images (via AI captioning). Ships with **both** a Streamlit chat UI and a **FastAPI REST API** behind API-key auth, a Dockerized deployment, and a CI pipeline that runs the test suite on every push.
 
 This is a from-scratch rebuild of an earlier prototype, restructured to close the gaps a prototype has vs. a project you'd actually put in production: an API layer, containerization, automated tests in CI, access control, and a clean repo (no build artifacts committed).
 
