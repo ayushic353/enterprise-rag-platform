@@ -36,24 +36,24 @@ Both the UI and the API call the exact same `rag/retrieval.py` pipeline, so beha
 - **Multi-format ingestion**: PDF, DOCX, TXT, Markdown, PNG/JPG (captioned via HuggingFace vision models)
 - **Dual LLM providers**: Groq (fast, hosted, primary) with automatic fallback to a local Ollama model if Groq is unavailable
 - **Semantic search**: ChromaDB with cosine similarity over sentence-transformer embeddings
-- **REST API**: `/health`, `/ingest`, `/chat`, `/reset` — usable from curl, Postman, or another service, not just the chat UI
+- **REST API**: `/health`, `/ingest`, `/chat`, `/reset` - usable from curl, Postman, or another service, not just the chat UI
 - **API-key auth**: every mutating/expensive endpoint requires an `X-API-Key` header
 - **Source citations**: every answer returns which document(s) and chunk(s) it came from, with a relevance score
 - **Dockerized**: one image, two entry points (API or UI) via `docker-compose`
-- **CI**: GitHub Actions runs the full pytest suite (fully mocked — no API keys needed) on every push and PR
+- **CI**: GitHub Actions runs the full pytest suite (fully mocked - no API keys needed) on every push and PR
 
 ## Prerequisites
 
 - Python 3.11+
 - (Optional) [Ollama](https://ollama.ai) installed locally if you want the offline LLM fallback
 - Free API keys:
-  - [Groq](https://console.groq.com/keys) — LLM generation
-  - [HuggingFace](https://huggingface.co/settings/tokens) — image captioning (only needed if you'll ingest images)
+  - [Groq](https://console.groq.com/keys) - LLM generation
+  - [HuggingFace](https://huggingface.co/settings/tokens) - image captioning (only needed if you'll ingest images)
 
 ## Local setup
 
 ```bash
-# 1. Clone your repo (after you've pushed it — instructions below)
+# 1. Clone your repo (after you've pushed it - instructions below)
 git clone https://github.com/ayushic353/enterprise-rag-platform.git
 cd enterprise-rag-platform
 
@@ -78,14 +78,14 @@ python -c "import secrets; print(secrets.token_urlsafe(32))"
 
 ## Running it
 
-**Option A — Streamlit chat UI**
+**Option A - Streamlit chat UI**
 
 ```bash
 streamlit run app.py
 ```
 Open http://localhost:8501, upload documents in the sidebar, click "Ingest Documents", then chat.
 
-**Option B — REST API**
+**Option B - REST API**
 
 ```bash
 uvicorn api.main:app --reload --port 8000
@@ -108,7 +108,7 @@ curl -X POST http://localhost:8000/chat \
   -d '{"question": "What were the Q3 findings?"}'
 ```
 
-**Option C — Docker (runs both API and UI)**
+**Option C - Docker (runs both API and UI)**
 
 ```bash
 docker compose up --build
@@ -121,7 +121,7 @@ docker compose up --build
 ```bash
 pytest tests/ -v
 ```
-The suite mocks the embedding model, vector store, and LLM calls, so it runs without any API keys or network access — this is exactly what CI runs on every push.
+The suite mocks the embedding model, vector store, and LLM calls, so it runs without any API keys or network access - this is exactly what CI runs on every push.
 
 ## Deploying to GitHub
 
@@ -138,10 +138,10 @@ git push -u origin main
 
 ## Security notes
 
-- `.env` is git-ignored — never commit real API keys.
+- `.env` is git-ignored- never commit real API keys.
 - `API_KEYS` in `.env.example` is intentionally blank. Generate your own with `secrets.token_urlsafe(32)`; don't reuse any example key from a README.
-- `data/` and `chroma_db/` are git-ignored — they're runtime artifacts, not source.
-- CORS in `api/main.py` is wide-open (`allow_origins=["*"]`) for local development — restrict it to your real frontend origin before any real deployment.
+- `data/` and `chroma_db/` are git-ignored - they're runtime artifacts, not source.
+- CORS in `api/main.py` is wide-open (`allow_origins=["*"]`) for local development - restrict it to your real frontend origin before any real deployment.
 
 ## Roadmap / possible next steps
 
@@ -152,4 +152,4 @@ git push -u origin main
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT - see [LICENSE](LICENSE).
